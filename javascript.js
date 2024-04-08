@@ -23,12 +23,12 @@ function divide(numA, numB) {
 function operate(num1, num2, operator) {
   switch (operator) {
     case "add":
-      return add(num1, num2);
+      return add(Number(num1), Number(num2));
     case "subtract":
-      return subtract(num1, num2);
+      return subtract(Number(num1), Number(num2));
     case "multiply":
-      return multiply(num1, num2);
+      return multiply(Number(num1), Number(num2));
     case "divide":
-      return divide(num1, num2);
+      return divide(Number(num1), Number(num2));
   }
 }
