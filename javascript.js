@@ -17,6 +17,9 @@ function multiply(numA, numB) {
 }
 
 function divide(numA, numB) {
+  if (numB === 0) {
+    return "yikers, dividing with 0? rly?";
+  }
   return numA / numB;
 }
 
@@ -49,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
           secondNumber = e.target.textContent;
           display.innerHTML = e.target.textContent;
         } else {
-          secondNumber += e.target.textContent;
+          secondNumber = e.target.textContent;
           display.innerHTML = secondNumber;
         }
       }
@@ -59,12 +62,18 @@ document.addEventListener("DOMContentLoaded", function () {
     elem.addEventListener("click", function (e) {
       if (!mainOperator) {
         mainOperator = e.target.id;
-        console.log(mainOperator);
+      } else {
+        firstNumber = operate(firstNumber, secondNumber, mainOperator);
+        secondNumber = false;
+        display.innerHTML = firstNumber;
+        mainOperator = e.target.id;
       }
     })
   );
   document.querySelector("#equals").addEventListener("click", function () {
-    display.innerHTML = operate(firstNumber, secondNumber, mainOperator);
+    if (firstNumber && secondNumber && mainOperator) {
+      display.innerHTML = operate(firstNumber, secondNumber, mainOperator);
+    }
   });
   document.querySelector("#clear").addEventListener("click", function () {
     firstNumber = false;
